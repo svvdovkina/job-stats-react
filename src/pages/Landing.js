@@ -1,12 +1,11 @@
-import logo from "../assets/images/logo.png"
 import statsImg from "../assets/images/stats-img.svg"
 import styled from 'styled-components'
+import Logo from "../components/Logo"
 
 const Landing = () => {
     return <Wrapper>
         <nav>
-            <img src={logo} alt="logo" className="logo"/>
-            <span>JobStater</span>
+            <Logo/>
         </nav>
         <div className="container">
             <div className="info">
@@ -23,26 +22,15 @@ const Landing = () => {
 
 const Wrapper = styled.main`
     nav {
+        height: 50px;
         display: flex;
         align-items: center;
-        gap: 20px;
-        height: 50px;
-    }
-
-    nav span {
-        color: var(--primary);
-        font-weight: 600;
-        font-size: 30px;
     }
 
     h1 {
         font-weight: 700;
     }
 
-    .logo {
-        margin-left: 20px;
-        width: 30px;
-    }
     .container {
         display: flex;
         gap: 50px;
