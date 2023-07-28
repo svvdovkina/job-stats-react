@@ -1,17 +1,18 @@
 import statsImg from "../assets/images/stats-img.svg"
 import styled from 'styled-components'
 import Logo from "../components/Logo"
+import { Link } from "react-router-dom"
 
 const Landing = () => {
     return <Wrapper>
         <nav>
-            <Logo/>
+            <Link to='/'><Logo/></Link>
         </nav>
         <div className="container">
             <div className="info">
                 <h1>Jobs <span className="japp">Application</span> Statistics</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae odit architecto facere adipisci aperiam sit hic temporibus quisquam nam tenetur. </p>
-                <button className="btn">Login/Rigister</button>
+                <Link to='/login' className="btn">Login / Register</Link>
             </div>
             <img src={statsImg} alt="" className="stats-img"/>
 
@@ -44,8 +45,8 @@ const Wrapper = styled.main`
         color: var(--primary-light);
     }
 
-    .btn {
-        margin-top: 20px;
+    p {
+        margin-bottom: 50px;
     }
 
     @media (max-width: 850px) {
