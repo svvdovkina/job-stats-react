@@ -35,7 +35,7 @@ const Wrapper = styled.main`
     .container {
         display: flex;
         gap: 50px;
-        padding-top: 20%;
+        padding-top: 15%;
     }
     .stats-img {
         width: 400px;
