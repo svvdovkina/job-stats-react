@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components'
 import FormRow from "../components/FormRow";
 import Logo from "../components/Logo";
+import { loginUser, registerUser } from "../features/user/userSlice";
 
 const initialState = {
     name: '',
@@ -15,6 +17,9 @@ const Register = () =>{
     const [values, setValues] = useState(initialState);
     const [errMsg, setErrMasg] = useState(null);
 
+    const {user, isLoading} = useSelector(store=> store.user)
+    const dispatch = useDispatch();
+
     const handleChange = (e) => {
         const inputName = e.target.name;
         const inputValue = e.target.value;
@@ -26,13 +31,20 @@ const Register = () =>{
     }
 
     const submitForm = (e) => {
-        const {email, password} = values;
+        const {name, email, password} = values;
         e.preventDefault();
         if (!email || !password) {
             setErrMasg('Please fill out email and password fields')
+            return
         }
-        console.log(values);
-        setValues(initialState);
+        if (values.isMember) {
+            dispatch(loginUser({email, password}))
+            return
+        }
+        if (!values.isMember) {
+            dispatch(registerUser({name, email, password}))
+            return
+        }
     }
 
     const toggleMember = () => {
