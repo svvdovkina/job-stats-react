@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
 import FormRow from "../components/FormRow";
 import Logo from "../components/Logo";
@@ -17,8 +19,10 @@ const Register = () =>{
     const [values, setValues] = useState(initialState);
     const [errMsg, setErrMasg] = useState(null);
 
-    const {user, isLoading} = useSelector(store=> store.user)
+    const {user, isLoading, error} = useSelector(store=> store.user)
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const inputName = e.target.name;
@@ -37,6 +41,7 @@ const Register = () =>{
             setErrMasg('Please fill out email and password fields')
             return
         }
+        setErrMasg(null)
         if (values.isMember) {
             dispatch(loginUser({email, password}))
             return
@@ -54,6 +59,13 @@ const Register = () =>{
         })
     }
 
+    useEffect(()=>{
+        if (user) {
+            navigate('/');
+        }
+        
+    }, [user, navigate]);
+
     return <Wrapper className="container">
         <div className="logo">
             <Logo />
@@ -66,14 +78,17 @@ const Register = () =>{
             
             <FormRow type="password" name="password" value={values.password} handleChange={handleChange}/>
             
-            <button type="submit" className="btn submit-btn">Submit</button>
+            <button type="submit" className="btn submit-btn" disabled={isLoading}>Submit</button>
         </form>
         {errMsg && <p className="err-msg">{errMsg}</p>}
+        {(error !== null) && <p className="err-msg">{error}</p>}
+        <br/>
         <p>{values.isMember ?
         'Not a member yet?' :'Already a member?'}</p>
         <button className="toggle-btn" onClick={toggleMember}>
             {!values.isMember ? 'Login' : 'Register'} 
         </button>
+        <p>{user && user.name}</p>
     </Wrapper>
 }
 
