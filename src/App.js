@@ -2,13 +2,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {Stats, Profile, AllJobs, AddJob, SharedLayout} from "./pages/dashboard";
 import ErrorPage from "./pages/Error";
 import Landing from "./pages/Landing";
+import ProtectedRoute from "./pages/ProtectedRoute";
 import Register from "./pages/Register";
 
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <SharedLayout/>,
+    element: <ProtectedRoute>
+        <SharedLayout/>
+      </ProtectedRoute>,
     children: [
       {
         index: true,
