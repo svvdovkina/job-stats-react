@@ -64,6 +64,7 @@ const Wrapper = styled.nav`
     }
     h3 {
         font-size: 28px;
+        font-weight: normal; 
     }
     .user-icon {
         font-size: 24px;
@@ -104,6 +105,9 @@ const Wrapper = styled.nav`
         grid-template-columns: auto 1fr;
         .full-logo {
             display: block;
+        }
+        .menu-btn {
+            visibility: hidden;
         }
     }
 `
