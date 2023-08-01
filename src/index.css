@@ -23,6 +23,11 @@ body {
   
 }
 
+button {
+  cursor: pointer;
+  border: none;
+}
+
 .btn {
   background-color: var(--primary);
   color: var(--light);

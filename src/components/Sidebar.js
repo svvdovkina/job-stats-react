@@ -1,5 +1,10 @@
+import { useSelector } from "react-redux"
+
 const Sidebar = () => {
-    return <h3>Sidebar</h3>
+    const {isSidebarOpen} = useSelector(store=>store.user)
+    return <div>
+        {isSidebarOpen && <h3>Sidebar</h3> }
+    </div>
 }
 
 export default Sidebar
