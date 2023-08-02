@@ -7,10 +7,10 @@ import Navbar from "../../components/Navbar"
 const SharedLayout = ({children}) =>{
     return <Wrapper>
             <div className="dashboard">
-                
+                <Sidebar/>
                 <div>
                     <Navbar/>
-                    <Sidebar/>
+                    
                     <BigSidebar/>
                     <div className="dashboard-page">
                         <Outlet/>
