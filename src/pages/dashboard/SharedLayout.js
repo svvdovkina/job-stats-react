@@ -10,9 +10,8 @@ const SharedLayout = ({children}) =>{
                 <Sidebar/>
                 <div>
                     <Navbar/>
-                    
-                    <BigSidebar/>
                     <div className="dashboard-page">
+                        <BigSidebar/>
                         <Outlet/>
                     </div>
                 </div>
@@ -21,7 +20,10 @@ const SharedLayout = ({children}) =>{
 }
 
 const Wrapper = styled.main`
-
+    .dashboard-page {
+        display: grid;
+        grid-template-columns: auto 1fr;
+    }
 `
 
 export default SharedLayout
