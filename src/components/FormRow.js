@@ -19,13 +19,23 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+
+    label {
+        margin-bottom: 5px;
+    }
     
     input {
         height: 35px;
         border: 1px solid var(--primary-light);
         border-radius: 5px;
         background-color: var(--light);
+        padding-left: 10px;
     }
+    input:focus {
+        outline: transparent;
+        border-color: var(--secondary)
+    }
+    
     label {
         text-transform: capitalize;
     }

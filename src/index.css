@@ -37,6 +37,7 @@ button {
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .btn:hover {
@@ -53,4 +54,46 @@ button {
 
 a {
   text-decoration: none;
+}
+
+.err-msg {
+  color: red;
+  font-size: 15px;
+}
+
+.success-msg{
+  color: var(--primary-light);
+  font-size: 15px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+.form-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.form-container {
+  margin: 0 20px;
+  margin-top: 15vh;
+  margin-bottom: 50px;
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 0px var(--light-medium);
+}
+
+.form-title {
+  color: var(--primary);
+  font-size: 24px;
+  text-align: center;
+}
+
+.cancel-btn {
+  background-color: var(--light);
+  color: var(--primary);
+  border: 1px solid var(--primary);
 }

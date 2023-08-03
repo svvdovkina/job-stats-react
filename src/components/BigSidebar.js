@@ -14,7 +14,7 @@ const BigSidebar = () => {
 
 const Wrapper = styled.aside`
     padding: 20px 50px 20px 40px;
-    height: 100vh;
+    height: calc(max(100%, calc(100vh - 85px)));
     background-color: white;
     .nav-link{
         margin-bottom: 20px;

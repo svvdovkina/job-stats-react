@@ -66,40 +66,46 @@ const Register = () =>{
         
     }, [user, navigate]);
 
-    return <Wrapper className="container">
-        <div className="logo">
-            <Logo />
-        </div>
-        <h3>{values.isMember ? 'Login' : 'Register'}</h3>
-        <form onSubmit={submitForm}>
-            {!values.isMember && <FormRow type="text" name="name" value={values.name} handleChange={handleChange}/>}
+    return <Wrapper >
+        <div className="form-container">
+            <div className="logo">
+                <Logo />
+            </div>
+            <h3 className="form-title">{values.isMember ? 'Login' : 'Register'}</h3>
+            <form onSubmit={submitForm}>
+                {!values.isMember && <FormRow type="text" name="name" value={values.name} handleChange={handleChange}/>}
 
-            <FormRow type="text" name="email" value={values.email} handleChange={handleChange}/>
-            
-            <FormRow type="password" name="password" value={values.password} handleChange={handleChange}/>
-            
-            <button type="submit" className="btn submit-btn" disabled={isLoading}>Submit</button>
-        </form>
-        {errMsg && <p className="err-msg">{errMsg}</p>}
-        {(error !== null) && <p className="err-msg">{error}</p>}
-        <br/>
-        <p>{values.isMember ?
-        'Not a member yet?' :'Already a member?'}</p>
-        <button className="toggle-btn" onClick={toggleMember}>
-            {!values.isMember ? 'Login' : 'Register'} 
-        </button>
-        <p>{user && user.name}</p>
+                <FormRow type="text" name="email" value={values.email} handleChange={handleChange}/>
+                
+                <FormRow type="password" name="password" value={values.password} handleChange={handleChange}/>
+                
+                <button type="submit" className="btn form-btn" disabled={isLoading}>Submit</button>
+            </form>
+            {errMsg && <p className="err-msg">{errMsg}</p>}
+            {(error !== null) && <p className="err-msg">{error}</p>}
+            <br/>
+            <p>{values.isMember ?
+            'Not a member yet?' :'Already a member?'}</p>
+            <button className="toggle-btn" onClick={toggleMember}>
+                {!values.isMember ? 'Login' : 'Register'} 
+            </button>
+        </div>
+        
     </Wrapper>
 }
 
 const Wrapper = styled.div`
-    max-width: 400px;
-    margin-top: 15%;
-    background-color: white;
-    padding: 50px 30px 30px;;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px 0px var(--light-medium);
-    border-top: 5px solid var(--primary);
+
+    display: flex;
+    justify-content: center;
+    
+    .form-container {
+        border-top: 5px solid var(--primary);
+        max-width: 400px;
+        width: 100%;
+        padding-top: 50px;
+    }
+    
 
     .logo {
         display: flex;
@@ -107,25 +113,6 @@ const Wrapper = styled.div`
         margin-bottom: 30px;
     }
 
-    h3 {
-        color: var(--primary);
-        font-size: 24px;
-        text-align: center;
-    }
-
-    form {
-        margin-top: 20px;
-    }
-    
-    input:focus {
-        outline: transparent;
-        border-color: var(--secondary)
-    }
-    .submit-btn {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        width: 100%;
-    }
     p {
         display: inline-block;
     }
@@ -136,10 +123,6 @@ const Wrapper = styled.div`
         cursor: pointer;
         font-size: inherit;
         color: var(--primary);
-    }
-    .err-msg {
-        color: red;
-        font-size: 15px;
     }
 `
 

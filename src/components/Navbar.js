@@ -39,6 +39,8 @@ const Navbar = () => {
 }
 
 const Wrapper = styled.nav`
+    position: fixed;
+    width: 100vw;
     display: grid;
     grid-template-columns: 1fr; 
     align-items: center;

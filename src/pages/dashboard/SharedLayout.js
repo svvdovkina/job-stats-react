@@ -21,8 +21,14 @@ const SharedLayout = ({children}) =>{
 
 const Wrapper = styled.main`
     .dashboard-page {
+        padding-top: 85px;
         display: grid;
         grid-template-columns: auto 1fr;
+    }
+    @media (max-width: 992px) {
+        .dashboard-page {
+            grid-template-columns: 1fr;
+        }
     }
 `
 
