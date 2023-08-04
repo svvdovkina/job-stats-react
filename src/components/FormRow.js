@@ -1,15 +1,30 @@
 import styled from 'styled-components'
 
-const FormRow = ({type, name, value, label, handleChange})=>{
+const FormRow = ({type, options, name, value, label, handleChange})=>{
     return <Wrapper>
         <label htmlFor={name}>{label || name}</label>
-        <input 
-            type={type} 
-            id={name} 
-            name={name} 
-            value={value} 
-            onChange={handleChange}
-        />
+        {type !== 'select' ? 
+            <input 
+                type={type} 
+                id={name} 
+                name={name} 
+                value={value} 
+                onChange={handleChange}
+            />
+            :
+            <select 
+                id={name} 
+                name={name} 
+                onChange={handleChange}
+                defaultValue={value}
+            >
+                {options&& options.map((opt, i)=>{
+                    return <option key={i} value={opt} >{opt}</option>
+                })}
+                
+            </select>
+        }
+        
     </Wrapper>
 }
 
@@ -24,14 +39,14 @@ const Wrapper = styled.div`
         margin-bottom: 5px;
     }
     
-    input {
+    input, select {
         height: 35px;
         border: 1px solid var(--primary-light);
         border-radius: 5px;
         background-color: var(--light);
         padding-left: 10px;
     }
-    input:focus {
+    input:focus, select:focus {
         outline: transparent;
         border-color: var(--secondary)
     }

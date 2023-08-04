@@ -18,7 +18,7 @@ const Wrapper = styled.div`
         display: flex;
         gap: 10px;
         align-items: center;
-        font-size: 24px;
+        font-size: 20px;
         text-transform: capitalize;
         color: var(--dark);
     }
