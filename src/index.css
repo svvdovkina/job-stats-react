@@ -1,10 +1,13 @@
 :root {
   --light: #f5f5f5;
   --light-medium: #d5d2cb;
+  --dark-medium: #6c6c71;
   --dark: #3f3d56;
   --primary: #1f7774;
   --primary-light: #54d3cf;
+  --primary-light2: #acfffc;
   --secondary:  #a47347;
+  --secondary-light: #ffd0a7;
 }
 
 * {
@@ -80,6 +83,13 @@ form {
   margin: 0 20px;
   margin-top: 15vh;
   margin-bottom: 50px;
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 0px var(--light-medium);
+}
+
+.card {
   background-color: white;
   padding: 20px 30px;
   border-radius: 10px;
