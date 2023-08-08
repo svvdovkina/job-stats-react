@@ -38,6 +38,21 @@ export const deleteJob = createAsyncThunk('job/deleteJob',
     }
 )
 
+export const editJob = createAsyncThunk('job/editJob',
+    async ({jobId, job}, thunkAPI)=>{
+        try {
+            const resp = await customFetch.patch(`/jobs/${jobId}`,job, {
+                headers: {
+                    Authorization: `Bearer ${thunkAPI.getState().user.user.token}`
+                }
+            })
+            return resp.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data.msg);
+        }
+    }
+)
+
 const initialState = {
     error: null,
     isLoading: false,
@@ -58,7 +73,13 @@ const jobSlice = createSlice({
     name: 'job',
     initialState,
     reducers: {
-
+        setEditJob: (state, {payload})=>{
+            return {
+                ...state, 
+                isEditing: true,
+                ...payload
+            }
+        }
     },
     extraReducers: (builder)=>{
         builder
@@ -77,7 +98,21 @@ const jobSlice = createSlice({
         .addCase(deleteJob.rejected, (state, {payload})=>{
             state.error = payload;
         })
+        .addCase(editJob.pending, state=>{
+            state.error = null;
+            state.isLoading = true;
+        })
+        .addCase(editJob.fulfilled, (state) => {
+            return initialState;
+
+        })
+        .addCase(editJob.rejected, (state, {payload})=>{
+            state.isLoading = false;
+            state.error = payload;
+        })
     }
 })
+
+export const {setEditJob} = jobSlice.actions;
 
 export default jobSlice.reducer

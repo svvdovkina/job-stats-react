@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import FormRow from "../../components/FormRow";
-import { createJob } from "../../features/job/jobSlice";
+import { createJob, editJob } from "../../features/job/jobSlice";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
 
 const AddJob = () =>{
 
-    const {location} = getUserFromLocalStorage();
+    let {lsLocation} = getUserFromLocalStorage();
 
     const {
         error,
@@ -20,21 +21,32 @@ const AddJob = () =>{
     } = useSelector(store=>store.job);
     const dispatch = useDispatch();
 
+    const [er, setEr] = useState(null);
+    const [success, setSuccess] = useState(null);
+
+    const [curJob, setCurJob] = useState({...job})
+
+    const navigate = useNavigate();
+
     useEffect(()=>{
         setEr(error);
         setSuccess(null);
     }, [error])
 
-    const [er, setEr] = useState(null);
-    const [success, setSuccess] = useState(null);
+    useEffect(
+        ()=>{
+            if (!isEditing) {
+                setCurJob({...job, jobLocation: lsLocation || ''});
+            }
+        },[]
+    )
 
-    const [curJob, setCurJob] = useState({...job, jobLocation: location || ''})
-
+    
     const handleCancel = (e)=>{
         e.preventDefault();
         setEr(null);
         setSuccess(null);
-        setCurJob({...job, jobLocation: location || ''});
+        setCurJob({...job, jobLocation: lsLocation || ''});
     }
 
     const handleChange = (e) =>{
@@ -54,6 +66,12 @@ const AddJob = () =>{
             return 
         }
 
+        if(isEditing) {
+            dispatch(editJob({jobId: editJobId, job: curJob}))
+            navigate("/all-jobs");
+            return
+        }
+
         dispatch(createJob(curJob));
         setCurJob(job);
         setSuccess("Done!")
@@ -69,7 +87,7 @@ const AddJob = () =>{
             <FormRow type="select" options={jobTypeOptions} name="jobType" label=" job type" value={curJob.jobType} handleChange={handleChange}/>
             <div></div>
             <button type="button" className="btn form-btn cancel-btn" onClick={handleCancel}>Clear</button>
-            <button type="submit" className="btn form-btn" onClick={handleSubmit} disabled={isLoading}>Add Job</button>
+            <button type="submit" className="btn form-btn" onClick={handleSubmit} disabled={isLoading}>{isEditing? "Edit Job" : "Add Job"}</button>
         </form>
         {er && <p className="err-msg">{er}</p>}
         {success && <p className="success-msg">{success}</p>}

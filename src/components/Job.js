@@ -3,12 +3,23 @@ import {FaLocationArrow, FaCalendar} from "react-icons/fa"
 import {MdOutlineWork} from "react-icons/md"
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { deleteJob } from '../features/job/jobSlice';
+import { deleteJob, setEditJob } from '../features/job/jobSlice';
 
 const Job = ({_id, company, position, status, jobType, jobLocation, createdAt})=>{
     
     const date = createdAt.slice(0, 10);
     const dispatch = useDispatch();
+
+    const handleEdit = ()=>dispatch(
+        setEditJob({
+            editJobId:_id,
+            job: {
+            company, 
+            position, 
+            status, 
+            jobType, 
+            jobLocation}
+        }))
     
     return <Wrapper className='card'>
         <div className="title-block">
@@ -25,7 +36,7 @@ const Job = ({_id, company, position, status, jobType, jobLocation, createdAt})=
             <p ><span className={`status ${status}`}>{status}</span></p>
         </div>
         <div className="buttons">
-            <Link to='/add-job' className='btn edit-btn'>Edit</Link>
+            <Link to='/add-job' className='btn edit-btn' onClick={handleEdit}>Edit</Link>
             <button className='btn delete-btn' onClick={()=>dispatch(deleteJob(_id))}>Delete</button>
         </div>
     </Wrapper>
