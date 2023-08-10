@@ -52,6 +52,11 @@ const Register = () =>{
         }
     }
 
+    const loginDemo = (e)=>{
+        e.preventDefault();
+        dispatch(loginUser({email: 'testUser@test.com', password: 'secret'}))
+    }
+
     const toggleMember = () => {
         setValues({
             ...values,
@@ -80,6 +85,7 @@ const Register = () =>{
                 <FormRow type="password" name="password" value={values.password} handleChange={handleChange}/>
                 
                 <button type="submit" className="btn form-btn" disabled={isLoading}>Submit</button>
+                <button type="button" className="btn form-btn demo-btn" disabled={isLoading} onClick={loginDemo}>Demo</button>
             </form>
             {errMsg && <p className="err-msg">{errMsg}</p>}
             {(error !== null) && <p className="err-msg">{error}</p>}
@@ -105,7 +111,16 @@ const Wrapper = styled.div`
         width: 100%;
         padding-top: 50px;
     }
-    
+
+    .demo-btn {
+        background-color: var(--primary-light);
+        margin-top: 0px;
+    }
+
+    .demo-btn:hover {
+        background-color: var(--primary);
+        
+    }
 
     .logo {
         display: flex;
