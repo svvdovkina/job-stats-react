@@ -70,9 +70,6 @@ const Profile = () =>{
 }
 
 const Wrapper = styled.section`
-    .form-container {
-        
-    }
     .form-title{
         text-align: left;
     }

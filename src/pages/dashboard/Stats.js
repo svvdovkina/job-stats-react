@@ -27,7 +27,7 @@ const Stats = () =>{
 }
 
 const Wrapper = styled.section`
-
+    padding: 20px;
 `
 
 export default Stats
