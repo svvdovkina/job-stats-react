@@ -17,9 +17,10 @@ const FormRow = ({type, options, name, value, label, handleChange})=>{
                 name={name} 
                 onChange={handleChange}
                 defaultValue={value}
+                value={value}
             >
                 {options&& options.map((opt, i)=>{
-                    return <option key={i} value={opt} >{opt}</option>
+                    return <option key={i} value={opt}>{opt}</option>
                 })}
                 
             </select>
