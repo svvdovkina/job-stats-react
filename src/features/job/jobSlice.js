@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import customFetch from "../../utils/axios";
+import customFetch, { checkAuthorization } from "../../utils/axios";
 import { getAllJobs, hideLoading, showLoading } from "../allJobs/allJobsSlice";
 
 
@@ -14,7 +14,7 @@ export const createJob = createAsyncThunk('job/addJob',
             })
             return resp.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data.msg);
+            return checkAuthorization(error, thunkAPI);
         }
     }
 )
@@ -31,7 +31,7 @@ export const deleteJob = createAsyncThunk('job/deleteJob',
             thunkAPI.dispatch(getAllJobs())
             return resp.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data.msg);
+            return checkAuthorization(error, thunkAPI);
         } finally {
             thunkAPI.dispatch(hideLoading())
         }
@@ -48,7 +48,7 @@ export const editJob = createAsyncThunk('job/editJob',
             })
             return resp.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data.msg);
+            return checkAuthorization(error, thunkAPI);
         }
     }
 )

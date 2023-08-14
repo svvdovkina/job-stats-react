@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import customFetch from "../../utils/axios";
+import customFetch, { checkAuthorization } from "../../utils/axios";
 
 const initialFiltersState = {
     search: '',
@@ -27,7 +27,7 @@ export const getAllJobs = createAsyncThunk('allJobs/getJobs',
         let query = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
 
         if (search.length > 0) {
-            query += `search=${search}`
+            query += `&search=${search}`
         }
 
         try {
@@ -38,7 +38,7 @@ export const getAllJobs = createAsyncThunk('allJobs/getJobs',
             });
             return resp.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data.msg)
+            return checkAuthorization(error, thunkAPI);
         }
     }
 )
@@ -53,7 +53,7 @@ export const showStats = createAsyncThunk('allJobs/showStats',
             });
             return resp.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data.msg)
+            return checkAuthorization(error, thunkAPI);
         }
     }
 )
@@ -71,6 +71,7 @@ export const allJobsSlice = createSlice({
         },
         handleChange: (state, {payload})=>{
             const {name, value} = payload;
+            state.page = 1;
             state[name] = value;
         },
         clearFilteres: (state)=>{
@@ -81,6 +82,9 @@ export const allJobsSlice = createSlice({
         },
         changePage: (state, {payload})=>{
             state.page = payload;
+        },
+        clearAllJobsState: ()=>{
+            return initialState
         }
 
     },
@@ -119,7 +123,8 @@ export const {
     hideLoading, 
     handleChange, 
     clearFilteres,
-    changePage
+    changePage,
+    clearAllJobsState
 } = allJobsSlice.actions;
 
 export default allJobsSlice.reducer

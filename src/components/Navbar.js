@@ -2,7 +2,8 @@ import { useState } from "react"
 import { BiMenu, BiUserCircle, BiCaretDown } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
-import { logoutUser, toggleSidebar } from "../features/user/userSlice"
+import { clearStore } from "../features/store/storeSlice"
+import { toggleSidebar } from "../features/user/userSlice"
 import Logo from "./Logo"
 
 const Navbar = () => {
@@ -29,7 +30,7 @@ const Navbar = () => {
                 </button>
                 <button 
                     className={`dropdown dropdown-btn ${showDropdown?'show-dropdown':''}`}
-                    onClick={()=>dispatch(logoutUser())}
+                    onClick={()=>dispatch(clearStore())}
                 >
                     Logout
                 </button>

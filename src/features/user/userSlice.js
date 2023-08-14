@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import customFetch from "../../utils/axios";
+import customFetch, { checkAuthorization } from "../../utils/axios";
 import { addUserToLocalStorage, getUserFromLocalStorage, removeUserFromLocalStorage } from "../../utils/localStorage";
 
 
@@ -35,10 +35,10 @@ export const updateUser = createAsyncThunk('user/updateUser',
             });
             return resp.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data.msg);
+            return checkAuthorization(error, thunkAPI);
         }
     }
-) 
+)
 
 export const userSlice = createSlice(
     {
