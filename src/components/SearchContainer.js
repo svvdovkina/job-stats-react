@@ -1,6 +1,8 @@
+import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { clearFilteres, handleChange } from '../features/allJobs/allJobsSlice';
+import { debounce } from '../utils/helpers';
 import FormRow from './FormRow';
 
 const SearchContainer = ()=>{
@@ -18,10 +20,21 @@ const SearchContainer = ()=>{
 
     const {jobTypeOptions, statusOptions} = useSelector(store=>store.job);
 
+    const [localSearch, setLocalSearch] = useState(search);
+
     const handleSearch = (e)=>{
         const name = e.target.name;
         const value = e.target.value;
         dispatch(handleChange({name, value}));
+    }
+
+    const debouncedDispatch = useMemo(()=>debounce(dispatch, 1000), []);
+
+    const handleLocalSearch = (e)=>{
+        const name = e.target.name;
+        const value = e.target.value;
+        setLocalSearch(value);
+        debouncedDispatch(handleChange({name, value}));
     }
 
     const clearSearch = (e) => {
@@ -35,8 +48,8 @@ const SearchContainer = ()=>{
             <FormRow 
                 type="text" 
                 name="search" 
-                value={search} 
-                handleChange={handleSearch}
+                value={localSearch} 
+                handleChange={handleLocalSearch}
             />
             <FormRow 
                 type="select" 
