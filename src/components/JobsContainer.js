@@ -6,7 +6,7 @@ import Job from './Job';
 
 const JobsContainer = ()=>{
 
-    const {isLoading, jobs, error} = useSelector(store=>store.allJobs);
+    const {isLoading, jobs, totalJobs, numOfPages, error} = useSelector(store=>store.allJobs);
     const dispatch = useDispatch();
 
     useEffect(()=>{
@@ -33,7 +33,7 @@ const JobsContainer = ()=>{
     }
 
     return <Wrapper >
-        <h3>Jobs info</h3>
+        <h3>{totalJobs} jobs found:</h3>
         <div className='jobs'>
             {jobs.map((job)=>{
                 return <Job key={job._id} {...job}/>

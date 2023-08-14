@@ -80,6 +80,9 @@ export const allJobsSlice = createSlice({
         } )
         .addCase(getAllJobs.fulfilled, (state, {payload})=>{
             state.jobs = payload.jobs;
+            console.log('getAlljobs', payload)
+            state.totalJobs = payload.totalJobs;
+            state.numOfPages = payload.numOfPages;
             state.isLoading = false
         })
         .addCase(getAllJobs.rejected, (state, {payload})=>{
