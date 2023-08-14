@@ -7,12 +7,23 @@ import PageBtnContainer from './PageBtnContainer';
 
 const JobsContainer = ()=>{
 
-    const {isLoading, jobs, page, totalJobs, numOfPages, error} = useSelector(store=>store.allJobs);
+    const {
+        isLoading, 
+        jobs, 
+        page, 
+        search,
+        searchStatus,
+        searchType,
+        sort, 
+        totalJobs,
+        numOfPages,
+        error
+    } = useSelector(store=>store.allJobs);
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(getAllJobs({page}))
-    },[page])
+        dispatch(getAllJobs({page, search, searchStatus, searchType, sort}))
+    }, [page, search, searchStatus, searchType, sort])
 
     if (isLoading) {
         return <Wrapper>

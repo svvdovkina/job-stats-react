@@ -23,8 +23,13 @@ const initialState = {
 
 export const getAllJobs = createAsyncThunk('allJobs/getJobs',
     async (queryParams, thunkAPI) => {
-        const {page} = queryParams;
-        const query = `/jobs?page=${page}`
+        const {page, search, searchStatus, searchType, sort} = queryParams;
+        let query = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
+
+        if (search.length > 0) {
+            query += `search=${search}`
+        }
+
         try {
             const resp = await customFetch(query, {
                 headers: {
