@@ -23,7 +23,7 @@ const Wrapper = styled.main`
     .dashboard-page {
         padding-top: 85px;
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: 250px auto;
     }
     @media (max-width: 992px) {
         .dashboard-page {

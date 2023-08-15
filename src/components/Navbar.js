@@ -41,6 +41,7 @@ const Navbar = () => {
 
 const Wrapper = styled.nav`
     position: fixed;
+    z-index: 1;
     width: 100vw;
     display: grid;
     grid-template-columns: 1fr; 

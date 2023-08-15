@@ -6,8 +6,13 @@
   --primary: #1f7774;
   --primary-light: #54d3cf;
   --primary-light2: #acfffc;
+  --primary-bgd: #a4dad8;
   --secondary:  #a47347;
   --secondary-light: #ffd0a7;
+  --yellow: #ffc936;
+  --yellow-light: #fff4d4;
+  --red: #f96941;
+  --red-light: #fbd1c5;
 }
 
 * {

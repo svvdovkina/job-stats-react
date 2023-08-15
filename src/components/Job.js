@@ -109,13 +109,16 @@ const Wrapper = styled.div`
     }
 
     .pending {
-        background-color: #ffeea0;
+        background-color: var(--yellow-light);
+        color: var(--yellow);
     }
     .interview {
-        background-color: #a0ecb6;
+        background-color: var(--primary-bgd);
+        color: var(--primary);
     }
     .declined {
-        background-color: #ffaba0;
+        background-color: var(--red-light);
+        color: var(--red);
     }
 
     p {

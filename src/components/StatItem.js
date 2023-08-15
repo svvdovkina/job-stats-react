@@ -37,11 +37,11 @@ const Wrapper = styled.div`
     }
 
     .pending {
-        color: #ffc936;
+        color: var(--yellow);
     }
 
     .pending.icon {
-        background-color: #fff4d4;
+        background-color: var(--yellow-light);
     }
 
     .interview {
@@ -49,15 +49,15 @@ const Wrapper = styled.div`
     }
 
     .interview.icon {
-        background-color: #a4dad8;
+        background-color: var(--primary-bgd);
     }
 
     .declined {
-        color: #f96941;
+        color: var(--red);
     }
     
     .declined.icon {
-        background-color: #fbd1c5;
+        background-color: var(--red-light);
     }
     
     h3 {

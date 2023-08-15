@@ -40,11 +40,12 @@ const Sidebar = () => {
 
 const Wrapper = styled.div`
     .sidebar-background {
-        position: absolute;
+        position: fixed;
+        top: 0;
         background-color: rgba(0, 0, 0, 0.6);
         height: 100vh;
         width: 100vw;
-        z-index: 1;
+        z-index: 100;
         display: flex;
     }
     aside {
