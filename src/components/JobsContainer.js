@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { getAllJobs } from '../features/allJobs/allJobsSlice';
 import Job from './Job';
+import Loader from './Loader';
 import PageBtnContainer from './PageBtnContainer';
 
 const JobsContainer = ()=>{
@@ -27,7 +28,7 @@ const JobsContainer = ()=>{
 
     if (isLoading) {
         return <Wrapper>
-                <h3>Loading...</h3>
+                <Loader/>
             </Wrapper>
     }
 

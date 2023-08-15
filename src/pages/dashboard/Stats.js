@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import {showStats} from "../../features/allJobs/allJobsSlice"
 import StatsContainer from "../../components/StatsContainer"
 import ChartContainer from "../../components/ChartContainer"
+import Loader from "../../components/Loader";
 
 const Stats = () =>{
 
@@ -16,7 +17,7 @@ const Stats = () =>{
 
     if (isLoading) {
         return <Wrapper>
-            <h3>Loading...</h3>
+            <Loader/>
         </Wrapper>
     }
 
