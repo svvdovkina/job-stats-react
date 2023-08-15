@@ -28,6 +28,7 @@ const SearchContainer = ()=>{
         dispatch(handleChange({name, value}));
     }
 
+    // eslint-disable-next-line
     const debouncedDispatch = useMemo(()=>debounce(dispatch, 1000), []);
 
     const handleLocalSearch = (e)=>{
