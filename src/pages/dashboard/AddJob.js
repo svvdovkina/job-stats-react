@@ -38,6 +38,7 @@ const AddJob = () =>{
             if (!isEditing) {
                 setCurJob({...job, jobLocation: lsLocation || ''});
             }
+            // eslint-disable-next-line
         },[]
     )
 
